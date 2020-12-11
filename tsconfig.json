@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "es2015", "es2018.promise"],
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true,
+    "outDir": "build",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationMap": true,
+    "paths": {
+      "lib/*": ["src/lib/*"]
+    },
+    "plugins": [
+      { "transform": "typescript-transform-paths" }
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "index.ts", "src/lib/**/*", "test/lib/**/*", "test/testproject/**/*"
+  ]
+}

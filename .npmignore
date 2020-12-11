@@ -1,0 +1,9 @@
+.idea/
+.yalc/
+src/
+test/
+jest.config.js
+package-lock.json
+yalc.lock
+build/elastic/test/
+*.tgz
