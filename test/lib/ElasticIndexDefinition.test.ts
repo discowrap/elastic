@@ -1,4 +1,4 @@
-import {successful} from "../../../core/src/lib/EngineResponse";
+import {successful} from "@discowrap/core";
 import {ElasticIndexDefinition} from "lib/ElasticIndexDefinition";
 
 describe('Index Definitions', () => {

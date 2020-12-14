@@ -9,16 +9,12 @@ describe('The ElasticProject should', () => {
     const projectRoot = resolve("test/testproject");
     const project = ElasticProject(projectRoot);
 
-    const engineSettingPaths = project.projectMappingFor("cluster");
+    const engineSettingPaths = project.definitionDescriptorsFor("cluster");
 
-    const expected = {
-      collar: {
-        definition: expect.stringMatching(/testproject\/cluster\/collar.ts$/),
-        install: expect.stringMatching(/testproject\/install\/cluster\/collar.json$/)
-      }
-    };
-
-    return expect(engineSettingPaths).toMatchObject(expected);
+    expect(engineSettingPaths[0].definitionName()).toBe("collar");
+    expect(engineSettingPaths[0].definitionPath()).toEqual(expect.stringMatching(/testproject\/cluster\/collar.ts$/));
+    expect(engineSettingPaths[0].installPath()).toEqual(expect.stringMatching(/testproject\/install\/cluster\/collar.json$/));
+    expect(engineSettingPaths[0].deployedName()).toEqual("setting_collar");
   });
 
 
@@ -26,20 +22,25 @@ describe('The ElasticProject should', () => {
     const projectRoot = resolve("test/testproject");
     const project = ElasticProject(projectRoot);
 
-    const queryTemplatePaths = project.projectMappingFor("query");
+    const definitionDescriptors = project.definitionDescriptorsFor("query");
+    const serialization = definitionDescriptors.map(dd => dd.serialize());
 
-    const expected = {
-      q1: {
-        definition: expect.stringMatching(/testproject\/query\/q1.ts$/),
-        install: expect.stringMatching(/testproject\/install\/query\/q1.mustache$/)
+    const expected = [
+      {
+        definitionName: "q1",
+        definitionPath: expect.stringMatching(/testproject\/query\/q1.ts$/),
+        installPath: expect.stringMatching(/testproject\/install\/query\/q1.mustache$/),
+        deployedName: "query_q1"
       },
-      q2: {
-        definition: expect.stringMatching(/testproject\/query\/q2.js$/),
-        install: expect.stringMatching(/testproject\/install\/query\/q2.mustache$/)
+      {
+        definitionName: "q2",
+        definitionPath: expect.stringMatching(/testproject\/query\/q2.js$/),
+        installPath: expect.stringMatching(/testproject\/install\/query\/q2.mustache$/),
+        deployedName: "query_q2"
       }
-    };
+    ];
 
-    return expect(queryTemplatePaths).toMatchObject(expected);
+    return expect(serialization).toMatchObject(expected);
   });
 
 
@@ -47,16 +48,19 @@ describe('The ElasticProject should', () => {
     const projectRoot = resolve("test/testproject");
     const project = ElasticProject(projectRoot);
 
-    const indexTemplatePaths = project.projectMappingFor("index/template");
+    const definitionDescriptors = project.definitionDescriptorsFor("index/template");
+    const serialization = definitionDescriptors.map(dd => dd.serialize());
 
-    const expected = {
-      idxtmpl1: {
-        definition: expect.stringMatching(/testproject\/index\/template\/idxtmpl1.ts$/),
-        install: expect.stringMatching(/testproject\/install\/index\/template\/idxtmpl1.json$/)
+    const expected = [
+      {
+        definitionName: "idxtmpl1",
+        definitionPath: expect.stringMatching(/testproject\/index\/template\/idxtmpl1.ts$/),
+        installPath: expect.stringMatching(/testproject\/install\/index\/template\/idxtmpl1.json$/),
+        deployedName: "indext_idxtmpl1"
       }
-    };
+    ];
 
-    return expect(indexTemplatePaths).toMatchObject(expected);
+    return expect(serialization).toMatchObject(expected);
   });
 
 
@@ -64,16 +68,19 @@ describe('The ElasticProject should', () => {
     const projectRoot = resolve("test/testproject");
     const project = ElasticProject(projectRoot);
 
-    const indexDefinitionPaths = project.projectMappingFor("index");
+    const definitionDescriptors = project.definitionDescriptorsFor("index");
+    const serialization = definitionDescriptors.map(dd => dd.serialize());
 
-    const expected = {
-      idx1: {
-        definition: expect.stringMatching(/testproject\/index\/idx1.ts$/),
-        install: expect.stringMatching(/testproject\/install\/index\/idx1.json$/)
+    const expected = [
+      {
+        definitionName: "idx1",
+        definitionPath: expect.stringMatching(/testproject\/index\/idx1.ts$/),
+        installPath: expect.stringMatching(/testproject\/install\/index\/idx1.json$/),
+        deployedName: "index_idx1"
       }
-    };
+    ];
 
-    return expect(indexDefinitionPaths).toMatchObject(expected);
+    return expect(serialization).toMatchObject(expected);
   });
 
 
@@ -81,20 +88,25 @@ describe('The ElasticProject should', () => {
     const projectRoot = resolve("test/testproject");
     const project = ElasticProject(projectRoot);
 
-    const featuresetTemplatePaths = project.projectMappingFor("featureset");
+    const definitionDescriptors = project.definitionDescriptorsFor("featureset");
+    const serialization = definitionDescriptors.map(dd => dd.serialize());
 
-    const expected = {
-      fs1: {
-        definition: expect.stringMatching(/testproject\/featureset\/fs1.ts$/),
-        install: expect.stringMatching(/testproject\/install\/featureset\/fs1.mustache$/)
+    const expected = [
+      {
+        definitionName: "fs1",
+        definitionPath: expect.stringMatching(/testproject\/featureset\/fs1.ts$/),
+        installPath: expect.stringMatching(/testproject\/install\/featureset\/fs1.mustache$/),
+        deployedName: "featureset_fs1"
       },
-      fs2: {
-        definition: expect.stringMatching(/testproject\/featureset\/fs2.ts$/),
-        install: expect.stringMatching(/testproject\/install\/featureset\/fs2.mustache$/)
+      {
+        definitionName: "fs2",
+        definitionPath: expect.stringMatching(/testproject\/featureset\/fs2.ts$/),
+        installPath: expect.stringMatching(/testproject\/install\/featureset\/fs2.mustache$/),
+        deployedName: "featureset_fs2"
       }
-    };
+    ];
 
-    return expect(featuresetTemplatePaths).toMatchObject(expected);
+    return expect(serialization).toMatchObject(expected);
   });
 
 
@@ -112,6 +124,7 @@ describe('The ElasticProject should', () => {
         expect.stringMatching(/tmp\/install\/cluster\/collar.json: INSTALLED/),
         expect.stringMatching(/tmp\/install\/query\/q1.mustache: INSTALLED/),
         expect.stringMatching(/tmp\/install\/query\/q2.mustache: INSTALLATION FAILED/),
+        expect.stringMatching(/tmp\/install\/query\/quepid\/qq.json: INSTALLED/),
         expect.stringMatching(/tmp\/install\/index\/idx1.json: INSTALLED/),
         expect.stringMatching(/tmp\/install\/index\/template\/idxtmpl1.json: INSTALLED/),
         expect.stringMatching(/tmp\/install\/featureset\/fs1.mustache: INSTALLED/),
@@ -131,13 +144,14 @@ describe('The ElasticProject should', () => {
 
     return Promise.resolve(expect(status).toEqual(
       expect.arrayContaining([
-        expect.stringMatching(/^collar: DEPLOYED/),
-        expect.stringMatching(/^q1: DEPLOYED/),
-        expect.stringMatching(/^q2: DEPLOYMENT FAILED/),
-        expect.stringMatching(/^idx1: DEPLOYED/),
-        expect.stringMatching(/^idxtmpl1: DEPLOYED/),
-        expect.stringMatching(/^fs1: DEPLOYED/),
-        expect.stringMatching(/^fs2: DEPLOYMENT FAILED/)
+        expect.stringMatching(/^setting_collar: DEPLOYED/),
+        expect.stringMatching(/^query_q1: DEPLOYED/),
+        expect.stringMatching(/^query_q2: DEPLOYMENT FAILED/),
+        expect.stringMatching(/^quepid_qq: DEPLOYED/), // TODO:  Change to NOT DEPLOYED in Project
+        expect.stringMatching(/^index_idx1: DEPLOYED/),
+        expect.stringMatching(/^indext_idxtmpl1: DEPLOYED/),
+        expect.stringMatching(/^featureset_fs1: DEPLOYED/),
+        expect.stringMatching(/^featureset_fs2: DEPLOYMENT FAILED/)
       ])
     )).then(() => {
       const engine = new ElasticEngine(searchHost);

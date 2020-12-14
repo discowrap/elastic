@@ -1,5 +1,5 @@
-import {ElasticQueryTemplateDefinition} from "lib/ElasticQueryTemplateDefinition";
 import {successful} from '@discowrap/core';
+import {ElasticQueryTemplateDefinition} from "lib/ElasticQueryTemplateDefinition";
 import {ElasticEngine} from "lib/ElasticEngine";
 
 describe('Query Templates', () => {

@@ -1,14 +1,14 @@
 {
   "name": "@discowrap/elastic",
-  "version": "0.0.1-draft.1",
+  "version": "0.0.1-draft.2",
   "type": "commonjs",
   "description": "Discowrap is a set of tools and practices to facilitate rapid development and iteration of search-centric applications.  The /elastic module implements a set of helper functions for the Elasticsearch platform.",
-  "main": "./build/elastic/index.js",
+  "main": "./build/index.js",
   "typings": "./build/elastic/index.d.ts",
   "scripts": {
     "test": "jest --runInBand",
     "build": "ttsc",
-    "clean": "rm -r build"
+    "clean": "rm -rf build"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/discowrap/elastic#readme",
   "dependencies": {
-    "@discowrap/core": "0.0.1-draft.1",
+    "@discowrap/core": "^0.0.1-draft.2",
     "@elastic/elasticsearch": "^7.8.0",
     "axios": "^0.19.2",
     "glob": "^7.1.6",
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@elastic/elasticsearch-mock": "^0.3.0",
-    "@types/jest": "^26.0.8",
+    "@types/jest": "^26.0.19",
     "@types/node": "^14.0.27",
     "fs-extra": "^9.0.1",
     "jest": "^26.2.2",

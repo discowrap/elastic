@@ -329,3 +329,13 @@ function transformDocumentsToBulk(documents, indexName) {
     ], []);
 }
 
+export function UNSUPPORTED_REQUEST(code, message) {
+  return new ElasticEngineResponse({
+    body: {},
+    statusCode: code,
+    warnings: {...message},
+    meta: {},
+    headers: {},
+    success: true
+  });
+}

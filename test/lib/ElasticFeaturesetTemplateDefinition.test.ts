@@ -1,6 +1,6 @@
 import {ElasticFeaturesetTemplateDefinition} from "lib/ElasticFeaturesetTemplateDefinition";
-import {successful} from "../../../core/src/lib/EngineResponse";
 import {ElasticEngine} from "lib/ElasticEngine";
+import {successful} from "@discowrap/core";
 
 describe('Featureset Templates', () => {
   it('can be checked, deployed, and cleaned up', () => {
