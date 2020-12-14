@@ -3,8 +3,8 @@
   "version": "0.0.1-draft.2",
   "type": "commonjs",
   "description": "Discowrap is a set of tools and practices to facilitate rapid development and iteration of search-centric applications.  The /elastic module implements a set of helper functions for the Elasticsearch platform.",
-  "main": "./build/elastic/index.js",
-  "typings": "./build/elastic/index.d.ts",
+  "main": "./build/index.js",
+  "typings": "./build/index.d.ts",
   "scripts": {
     "test": "jest --runInBand",
     "build": "ttsc",
