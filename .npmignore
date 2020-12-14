@@ -2,6 +2,8 @@
 .yalc/
 src/
 test/
+build/test
+coverage/
 jest.config.js
 package-lock.json
 yalc.lock

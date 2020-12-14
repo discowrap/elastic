@@ -1,6 +1,6 @@
-import {EngineResponse, Query} from "@discowrap/core";
 import {MustacheTemplateDefinition} from "lib/MustacheTemplateDefinition";
 import {ElasticEngine} from "lib/ElasticEngine";
+import {EngineResponse, Query} from "@discowrap/core";
 
 export class ElasticQueryTemplateDefinition extends MustacheTemplateDefinition implements Query {
   constructor(name, template) {

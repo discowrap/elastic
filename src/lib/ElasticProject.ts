@@ -10,8 +10,9 @@ import {Project, ProjectStructure} from "@discowrap/core";
  */
 
 
-const DEFAULT_ELASTIC_PROJECT_STRUCTURE = new ProjectStructure({
-  "cluster": {
+const DEFAULT_ELASTIC_PROJECT_STRUCTURE = new ProjectStructure([
+  {
+    "type": "cluster",
     "src": {
       "dir": "cluster",
       "extension": ["ts", "js"]
@@ -24,7 +25,8 @@ const DEFAULT_ELASTIC_PROJECT_STRUCTURE = new ProjectStructure({
       "name_prefix": "setting_"
     }
   },
-  "index/template": {
+  {
+    "type": "index/template",
     "src": {
       "dir": "index/template",
       "extension": ["ts", "js"]
@@ -37,7 +39,8 @@ const DEFAULT_ELASTIC_PROJECT_STRUCTURE = new ProjectStructure({
       "name_prefix": "indext_"
     }
   },
-  "index": {
+  {
+    "type": "index",
     "src": {
       "dir": "index",
       "extension": ["ts", "js"]
@@ -50,7 +53,8 @@ const DEFAULT_ELASTIC_PROJECT_STRUCTURE = new ProjectStructure({
       "name_prefix": "index_"
     }
   },
-  "featureset": {
+  {
+    "type": "featureset",
     "src": {
       "dir": "featureset",
       "extension": ["ts", "js"]
@@ -60,10 +64,11 @@ const DEFAULT_ELASTIC_PROJECT_STRUCTURE = new ProjectStructure({
       "extension": ".mustache"
     },
     "deploy": {
-      "name_prefix": "features_"
+      "name_prefix": "featureset_"
     }
   },
-  "query": {
+  {
+    "type": "query",
     "src": {
       "dir": "query",
       "extension": ["ts", "js"],
@@ -75,8 +80,22 @@ const DEFAULT_ELASTIC_PROJECT_STRUCTURE = new ProjectStructure({
     "deploy": {
       "name_prefix": "query_"
     }
+  },
+  {
+    "type": "query/quepid",
+    "src": {
+      "dir": "query/quepid",
+      "extension": ["ts", "js"],
+    },
+    "install": {
+      "dir": "query/quepid",
+      "extension": ".json"
+    },
+    "deploy": {
+      "name_prefix": "quepid_"
+    }
   }
-});
+]);
 
 export default (projectRoot, installDir?, templateRoot?, structure?: ProjectStructure) => {
     return new Project(

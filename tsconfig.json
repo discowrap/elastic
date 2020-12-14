@@ -11,6 +11,8 @@
     "baseUrl": ".",
     "declaration": true,
     "declarationMap": true,
+    "composite": true,
+    "rootDir": ".",
     "paths": {
       "lib/*": ["src/lib/*"]
     },
@@ -22,6 +24,9 @@
     "node_modules"
   ],
   "include": [
-    "index.ts", "src/lib/**/*", "test/lib/**/*", "test/testproject/**/*"
+    "index.ts",
+    "src/lib/**/*",
+    "test/lib/**/*",
+    "test/testproject/**/*"
   ]
 }
